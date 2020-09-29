@@ -12,19 +12,19 @@ module.exports = class CharacterInformation {
         return info;
     }
 
-    static assassinInfo(){
+    static getAssassinInfo(){
         let info = `Assassins are most successfull when their deeds 
         never come to light. Fond of poisons and silent projectile weapons, 
         rogues rely on a blend of stealth and minor mysticism`
         return info;
     }
 
-    static mageInfo(){
+    static getMageInfo(){
         let info = `Mages are wizards of immense knowledge and skill. 
         Their obvious physicall fraility is deceptive`
         return info;
     }
-    static druidInfo(){
+    static getDruidInfo(){
         let info = `Druids live in a state of unparalleled union with nature.
         Thightly bound to the plant and animal kingdoms, they are natural shapeshifters,
         and so the know firsthand the abuse visited on thier wild brethrend`

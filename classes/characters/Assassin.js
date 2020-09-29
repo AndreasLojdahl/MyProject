@@ -4,14 +4,12 @@ module.exports = class Assassin extends Character {
     health;
     spells;
     level;
-    constructor(name, gender, type){
-        super(name, gender, type)
+    class;
+    constructor(name, race, spells){
+        super(name, race)
+        this.class = 'Assassin'
         this.level = 1;
         this.health = 70;
-        this.spells = [
-            {name: 'Stab', dmg: 15},
-            {name: 'Poison', dmg: 10},
-            {name: 'Ambush', dmg: 20}
-        ];
+        this.spells = spells
     }
 }

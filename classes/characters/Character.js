@@ -1,12 +1,10 @@
 module.exports = class Character {
 
     name;
-    gender;
-    type;
+    race;
 
-    constructor(name, gender, type){
+    constructor(name, race){
         this.name = name;
-        this.gender = gender;
-        this.type = type;
+        this.race = race;
     }
 }

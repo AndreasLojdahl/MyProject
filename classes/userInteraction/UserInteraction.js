@@ -149,6 +149,8 @@ module.exports = class UserInteraction  {
 
     async displayCharacters(){
 
+        // do I want to fetch data here and then pass it elsewhere like this? 
+        //or do I make a introduce method in each character and just do a displayMethod in storage or message class?
         if(this.storage.getPlayerCharacters().length > 0){
             let chars = this.storage.getPlayerCharacters();
             Message.displayCharacters(chars);

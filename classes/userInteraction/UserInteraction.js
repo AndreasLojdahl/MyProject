@@ -1,6 +1,7 @@
 const CharacterInformation = require('../information/CharacterInformation')
 const Message = require('../information/Messages')
 const CharacterFactory = require('../factories/CharacterFactory')
+const Storage = require('../data/Storage')
 const Enums = require('../enums/Enums')
 const prompt = require('async-prompt');
 
@@ -13,7 +14,9 @@ module.exports = class UserInteraction  {
 
     async getWhichClassSwitch (userChoice) {
 
-        if(Object.values(Enums.classes).includes(userChoice) || '5') {
+        let moreCharInfo = Enums.inputs.goBack
+
+        if(Object.values(Enums.classes).includes(userChoice) || userChoice === Enums.inputs.moreCharInfo) {
             
             switch(userChoice){
                 case Enums.classes.WARRIOR: 
@@ -24,9 +27,13 @@ module.exports = class UserInteraction  {
                     return Enums.classes.ASSASSIN;
                 case Enums.classes.DRUID: 
                     return Enums.classes.DRUID;
-                case '5': 
-                    let userInput = await prompt(Message.getWhichInfoMessage())
-                    return Enums.classes.DRUID;
+                case Enums.inputs.moreCharInfo:
+                    while(moreCharInfo === Enums.inputs.goBack){
+                        let input = await prompt(Message.getWhichInfoMessage())
+                        moreCharInfo = this.getWhichInfoSwitch(input)
+                    }
+                    Message.showMessage(moreCharInfo)
+                    return 'error'
             }
         }
         return 'error'
@@ -35,7 +42,6 @@ module.exports = class UserInteraction  {
 
     getWhichRaceSwitch (userChoice) {
 
-        
         if(Object.values(Enums.races).includes(userChoice)){
 
             switch(userChoice){
@@ -71,45 +77,65 @@ module.exports = class UserInteraction  {
                     return CharacterInformation.getAssassinInfo();
                 case Enums.classes.DRUID: 
                     return CharacterInformation.getDruidInfo();
+                case Enums.inputs.goBack:
+                    return Enums.inputs.goBack;
             }
         }
         return 'error'
     }
-    getMainMenuSwitch (userChoice) {
+    async getMainMenuSwitch (userChoice) {
 
         if(Object.values(Enums.mainMenu).includes(userChoice)){
 
             switch(userChoice){
                 case Enums.mainMenu.CREATE:
-                    this.create();
-                    return null;
+                    await this.createCharacter();
+                    return;
                 case Enums.mainMenu.DISPLAY: 
                     return CharacterInformation.getMageInfo();
                 case Enums.mainMenu.GAME: 
                     return CharacterInformation.getAssassinInfo();
                 case Enums.mainMenu.QUIT: 
-                    return CharacterInformation.getDruidInfo();
+                    return Enums.mainMenu.QUIT
                 }
             }
             return 'error'
-        }
+    }
         
-        async create() {
+    async createCharacter() {
+
             let character = {
                 class: '',
                 race: '',
                 name: ''
             }
-            
-            let userInput = await prompt(Message.getWhichClassMessage());
-            character.class = this.getWhichClassSwitch(userInput)
-            
-            // let userInput1 = await prompt(Message.getWhichRaceMessage());
-            // character.race = this.getWhichRaceSwitch(userInput1)
 
-            character.name = await prompt(Message.getWhichNameMessage());
+            let inputRace
+            let inputClass
             
-            let createdCharacter = CharacterFactory.createCharacter(character);
+
+            let charRace = Enums.inputs.wrongInput;
+            let charClass = Enums.inputs.wrongInput;
+            
+            while(charClass === Enums.inputs.wrongInput){
+                inputClass = await prompt(Message.getWhichClassMessage())
+                charClass = await this.getWhichClassSwitch(inputClass)
+            }
+            character.class = charClass;
+
+            while(charRace === Enums.inputs.wrongInput){
+                inputRace = await prompt(Message.getWhichRaceMessage())
+                charRace = this.getWhichRaceSwitch(inputRace)
+            }
+            character.race = charRace;
+
+            character.name = await prompt(Message.getWhichNameMessage())
+
+            let createdCharacter = CharacterFactory.createCharacter(character)
+
+            Message.showMessage(`
+            
+            You have created a new Character!`)
 
             console.log('Name: ' + createdCharacter.name +
             ' Race: ' +  createdCharacter.race + 

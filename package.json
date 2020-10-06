@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AndreasLojdahl/MyProject#readme",
   "dependencies": {
-    "async-prompt": "^1.0.1"
+    "async-prompt": "^1.0.1",
+    "promptly": "^3.0.3"
   }
 }

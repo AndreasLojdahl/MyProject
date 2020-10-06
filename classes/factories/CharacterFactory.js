@@ -39,7 +39,7 @@ module.exports = class CharacterFactory {
 
     // shall get a character obj {name: '', race: '', class: ''}
     static createCharacter(character){
-       
+
         if(Object.values(Enums.classes).includes(character.class)){
             switch(character.class){
                 case Enums.classes.WARRIOR:{
@@ -59,7 +59,6 @@ module.exports = class CharacterFactory {
                     return newChar;
                 }
             }
-
         }
         return 'error'
 

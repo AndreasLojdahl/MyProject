@@ -32,11 +32,12 @@ module.exports = class Messages {
     static getWhichInfoMessage(){
         return `
         
-        Which class would you like info about?
+        Which class would you like information about?
         1. Warrior
         2. Mage 
         3. Assassin 
         4. Druid 
+        5. Go back
         :`
     }
 
@@ -51,6 +52,13 @@ module.exports = class Messages {
         return `
         
         Welcome Player!`
+    }
+
+    static getByeMessage(){
+        return `
+        
+        Goodbye! see you soon!
+        `
     }
 
     static getMainMenuMessage(){

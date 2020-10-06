@@ -31,6 +31,13 @@ let enums = {
         QUIT: '4'
     },
 
+    inputs: {
+        wrongInput: 'error',
+        moreCharInfo: '5',
+        goBack: 'return'
+    }
+
+
 
 }
 

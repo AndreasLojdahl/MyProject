@@ -4,11 +4,15 @@ const UserInteraction = require('../userInteraction/UserInteraction')
 
 module.exports = class GamePlan {
 
+    hasBeenInstantieted = false
     message = new Messages();
     userInteraction = new UserInteraction();
 
     constructor(){
-
+      if(GamePlane.hasBeenInstantieted){
+        throw new Error('You can only create one instance of Gameplan!')
+      }
+    GamePlan.hasBeenInstantieted = true;
     }
 
     async mainMenu(){

@@ -75,4 +75,27 @@ module.exports = class Messages {
     static showMessage(message){
         console.log(message)
     }
+
+    static displayCharacters(characters){
+
+        
+
+        characters.forEach(char => {
+
+            let spells = char.spells.filter(x => {
+                x.name
+            })
+
+            console.log(spells)
+            let spellsDisplay = spells.join()
+            console.log(`
+            
+            Name: ${char.name}
+            Class: ${char.class}
+            Race: ${char.race}
+            health: ${char.health}
+            Spells: ${spellsDisplay}
+            `)
+        });
+    }
 }

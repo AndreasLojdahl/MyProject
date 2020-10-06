@@ -15,15 +15,15 @@ module.exports = class Storage {
     }
 
     getPlayerCharacters = () => {
-        return playerCharacters;
+        return this.playerCharacters;
     }
 
     deletePlayerCharacter = (name) => {
         let newList = playerCharacters.filter(char => char.name !== name )
-        playerCharacters = newList;
+        this.playerCharacters = newList;
     }
 
     addPlayerCharacter = (character) => {
-        playerCharacters.push(character)
+        this.playerCharacters.push(character)
     }
 }

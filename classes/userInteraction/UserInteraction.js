@@ -7,7 +7,7 @@ const prompt = require('async-prompt');
 
 module.exports = class UserInteraction  {
 
-    
+    storage = new Storage;
 
     constructor(){
     }
@@ -92,7 +92,7 @@ module.exports = class UserInteraction  {
                     await this.createCharacter();
                     return;
                 case Enums.mainMenu.DISPLAY: 
-                    return CharacterInformation.getMageInfo();
+                    await this.displayCharacters();
                 case Enums.mainMenu.GAME: 
                     return CharacterInformation.getAssassinInfo();
                 case Enums.mainMenu.QUIT: 
@@ -133,15 +133,30 @@ module.exports = class UserInteraction  {
 
             let createdCharacter = CharacterFactory.createCharacter(character)
 
+            this.storage.addPlayerCharacter(createdCharacter)
+
             Message.showMessage(`
             
             You have created a new Character!`)
 
-            console.log('Name: ' + createdCharacter.name +
+            console.log(
+            ' Name: ' + createdCharacter.name +
             ' Race: ' +  createdCharacter.race + 
             ' class: ' + createdCharacter.class + 
             ' Health '+ createdCharacter.health+ ' created caracter!!!!!!')
             
+    }
+
+    async displayCharacters(){
+
+        if(this.storage.getPlayerCharacters().length > 0){
+            let chars = this.storage.getPlayerCharacters();
+            Message.displayCharacters(chars);
+
+        }else {
+            Message.showMessage('No Characters Have Been Created!')
+        }
+
     }
 
 }

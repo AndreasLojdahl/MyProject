@@ -35,6 +35,11 @@ let enums = {
         wrongInput: 'error',
         moreCharInfo: '5',
         goBack: 'return'
+    },
+
+    display: {
+        CHARS: 'chars',
+        QUICKMATCHCHARS: 'quickChars'
     }
 
 

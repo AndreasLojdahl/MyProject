@@ -1,8 +1,9 @@
 
 const GamePlan = require('./classes/gameplan/GamePlan')
 
-gamePlan = new GamePlan();
+// Can be reached every with store
 
+gamePlan = new GamePlan();
 gamePlan.mainMenu();
 
 

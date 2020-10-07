@@ -72,30 +72,49 @@ module.exports = class Messages {
         :`
     }
 
+    static getQuickMatchMessage(){
+        return `
+        
+        Welcome to quick match!
+        you will now battle with an enemy for experience
+        to level up your character or die and loose it forever!
+        `
+    }
+
     static showMessage(message){
         console.log(message)
     }
 
     static displayCharacters(characters){
 
-        
+        let count = 1
 
         characters.forEach(char => {
 
-            let spells = char.spells.filter(x => {
+            let spells = char.spells.map(x => 
                 x.name
-            })
+            );
 
-            console.log(spells)
-            let spellsDisplay = spells.join()
+            let spellsDisplay = spells.join(', ')
             console.log(`
-            
-            Name: ${char.name}
-            Class: ${char.class}
-            Race: ${char.race}
+            CHARACTER ${count}
+
+            Name:   ${char.name}
+            Class:  ${char.class}
+            Race:   ${char.race}
             health: ${char.health}
             Spells: ${spellsDisplay}
             `)
+            count++;
         });
+    }
+
+    static getSelectPlayerMessage(characters){
+
+        let count = 1;
+        characters.forEach(char => {
+            Messages.showMessage(`${count}. ${char.name}, ${char.race} ${char.class} Lvl. ${char.level}`)
+            count++;
+        })
     }
 }

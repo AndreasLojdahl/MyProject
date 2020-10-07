@@ -28,7 +28,7 @@ module.exports = class GamePlan {
         let userChoice;
         let input;
 
-        // console.log(Messages.getGreetingMessage())
+        console.log(Messages.getGreetingMessage())
         // let question = Messages.getMainMenuMessage();
 
         // rl,question(question, (answer) => {
@@ -47,8 +47,6 @@ module.exports = class GamePlan {
           }
 
           Messages.showMessage(Messages.getByeMessage())
-          
-
         //  }
 
 
@@ -70,13 +68,5 @@ module.exports = class GamePlan {
 
     }
 
-    async loop () {
-      
-      if(userChoice !== exit){
-        this.loop();
-      }else{
-        continue;
-      }
-      
-    }
+
 }

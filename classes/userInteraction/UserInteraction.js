@@ -4,6 +4,7 @@ const CharacterFactory = require('../factories/CharacterFactory')
 const Storage = require('../data/Storage')
 const Enums = require('../enums/Enums')
 const prompt = require('async-prompt');
+const QuickMatch = require('../userInteraction/QuickGame')
 
 module.exports = class UserInteraction  {
 
@@ -92,9 +93,9 @@ module.exports = class UserInteraction  {
                     await this.createCharacter();
                     return;
                 case Enums.mainMenu.DISPLAY: 
-                    await this.displayCharacters();
+                    this.displayCharacters();
                 case Enums.mainMenu.GAME: 
-                    return CharacterInformation.getAssassinInfo();
+                    this.doQuickMatch();
                 case Enums.mainMenu.QUIT: 
                     return Enums.mainMenu.QUIT
                 }
@@ -139,26 +140,49 @@ module.exports = class UserInteraction  {
             
             You have created a new Character!`)
 
-            console.log(
-            ' Name: ' + createdCharacter.name +
-            ' Race: ' +  createdCharacter.race + 
-            ' class: ' + createdCharacter.class + 
-            ' Health '+ createdCharacter.health+ ' created caracter!!!!!!')
+            // console.log(
+            // ' Name: ' + createdCharacter.name +
+            // ' Race: ' +  createdCharacter.race + 
+            // ' class: ' + createdCharacter.class + 
+            // ' Health '+ createdCharacter.health+ ' created caracter!!!!!!')
             
     }
 
-    async displayCharacters(){
+     displayCharacters(display){
 
         // do I want to fetch data here and then pass it elsewhere like this? 
         //or do I make a introduce method in each character and just do a displayMethod in storage or message class?
-        if(this.storage.getPlayerCharacters().length > 0){
-            let chars = this.storage.getPlayerCharacters();
-            Message.displayCharacters(chars);
 
-        }else {
-            Message.showMessage('No Characters Have Been Created!')
+        if(displayChoice === Enums.display.CHARS){
+            
+            if(this.storage.getPlayerCharacters().length > 0){
+                let chars = this.storage.getPlayerCharacters();
+                Message.displayCharacters(chars);
+    
+            }else {
+                Message.showMessage('No Characters Have Been Created!')
+            }
+
+        }else if(display === Enums.display.QUICKMATCHCHARS){
+
+            if(this.storage.getPlayerCharacters().length > 0){
+                let chars = this.storage.getPlayerCharacters();
+                Message.showMessage(Message.getSelectPlayerMessage())
+
+            }else{
+                Message.showMessage("No Characters Have Been Created!");
+            }
         }
 
+
+    }
+
+    doQuickMatch(){
+        QuickMatch.enterQuickGame()
+    }
+
+    selectCharacterForQuickMatch(){
+        Message.showMessage('Which charcter would you like to battle with?')
     }
 
 }

@@ -20,52 +20,16 @@ module.exports = class GamePlan {
   
 
     async mainMenu(){
-        // const rl = readline.createInterface({
-        //   input: process.stdin,
-        //   output: process.stdout
-        // })
+      
         let mainMenuInput;
-        let userChoice;
-        let input;
-
+      
         console.log(Messages.getGreetingMessage())
-        // let question = Messages.getMainMenuMessage();
-
-        // rl,question(question, (answer) => {
-        //   if(answer !== exit){
-        //     this.userInteraction.getMainMenuSwitch(answer)
-        //   }else{
-        //     rl,close()
-        //   }
-        // })
-
-        
-        // while(userChoice !== exit){
+    
           while(mainMenuInput !== Enums.mainMenu.QUIT ){
-            input = await prompt(Messages.getMainMenuMessage())
+            let input = await prompt(Messages.getMainMenuMessage())
             mainMenuInput = await this.userInteraction.getMainMenuSwitch(input)
           }
-
           Messages.showMessage(Messages.getByeMessage())
-        //  }
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
     }
 
 

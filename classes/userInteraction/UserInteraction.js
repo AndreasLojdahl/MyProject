@@ -93,9 +93,11 @@ module.exports = class UserInteraction  {
                     await this.createCharacter();
                     return;
                 case Enums.mainMenu.DISPLAY: 
-                    this.displayCharacters();
+                    this.displayCharacters(Enums.display.CHARS);
+                    return;
                 case Enums.mainMenu.GAME: 
-                    this.doQuickMatch();
+                    await this.selectCharacterForQuickMatch();
+                    return;
                 case Enums.mainMenu.QUIT: 
                     return Enums.mainMenu.QUIT
                 }
@@ -113,7 +115,6 @@ module.exports = class UserInteraction  {
 
             let inputRace
             let inputClass
-            
 
             let charRace = Enums.inputs.wrongInput;
             let charClass = Enums.inputs.wrongInput;
@@ -136,53 +137,103 @@ module.exports = class UserInteraction  {
 
             this.storage.addPlayerCharacter(createdCharacter)
 
-            Message.showMessage(`
-            
-            You have created a new Character!`)
-
-            // console.log(
-            // ' Name: ' + createdCharacter.name +
-            // ' Race: ' +  createdCharacter.race + 
-            // ' class: ' + createdCharacter.class + 
-            // ' Health '+ createdCharacter.health+ ' created caracter!!!!!!')
+            Message.showMessage('You have created a character!')
             
     }
 
+    
+
      displayCharacters(display){
 
-        // do I want to fetch data here and then pass it elsewhere like this? 
-        //or do I make a introduce method in each character and just do a displayMethod in storage or message class?
-
-        if(displayChoice === Enums.display.CHARS){
+        if(display === Enums.display.CHARS){
             
             if(this.storage.getPlayerCharacters().length > 0){
                 let chars = this.storage.getPlayerCharacters();
                 Message.displayCharacters(chars);
     
             }else {
-                Message.showMessage('No Characters Have Been Created!')
+                Message.showMessage(Message.getNoCharsHaveBeenCreated())
             }
 
         }else if(display === Enums.display.QUICKMATCHCHARS){
 
             if(this.storage.getPlayerCharacters().length > 0){
-                let chars = this.storage.getPlayerCharacters();
-                Message.showMessage(Message.getSelectPlayerMessage())
-
+                Message.showMessage(Message.getSelectPlayerMessage(this.storage.getPlayerCharacters()))
             }else{
-                Message.showMessage("No Characters Have Been Created!");
+                Message.showMessage(Message.getNoCharsHaveBeenCreated());
             }
         }
 
 
     }
 
-    doQuickMatch(){
-        QuickMatch.enterQuickGame()
+    getWhichCharToQuickMatch(input){
+      
+        if(parseInt(input)){
+            let x = parseInt(input)
+
+            if(x > this.storage.getPlayerCharacters().length){
+                console.log(input, 'efter andra if')
+                return Enums.inputs.wrongInput;
+                
+            }else if(x === 0){
+                return Enums.inputs.wrongInput  
+            }
+
+            let intInput = parseInt(input)
+            let choice = intInput-1;
+            return choice
+
+        }else{
+
+            if(!parseInt(input)){
+                return Enums.inputs.wrongInput
+            }
+            
+        }
+
     }
 
-    selectCharacterForQuickMatch(){
-        Message.showMessage('Which charcter would you like to battle with?')
+    createRandomEnemy(){
+
+        let enemyChar = {
+            class: '',
+            race:'',
+            name:''
+        }
+
+        let randomEnemyClass = Math.floor(Math.random() * Enums.classes.length) + 1;
+        enemyChar.class = randomEnemyClass;
+        let randomEnemyRace = Math.floor(Math.random() * Enums.races.length) + 1;
+        enemyChar.race = randomEnemyRace;
+        enemyChar.name = "Enemy"
+        let createdRandomEnemy = CharacterFactory.createCharacter(enemyChar)
+        return createdRandomEnemy;
+    }
+
+    doQuickMatch(selectedChar){
+
+       let enemy = this.createRandomEnemy();
+        QuickMatch.enterQuickGame(selectedChar, enemy)
+    }
+
+    async selectCharacterForQuickMatch(){
+
+        if(this.storage.getPlayerCharacters().length > 0){
+
+            let whichChar = Enums.inputs.wrongInput;
+            while(whichChar === Enums.inputs.wrongInput){
+                Message.showMessage(Message.getWhichCharQuickMatchMessage())
+                this.displayCharacters(Enums.display.QUICKMATCHCHARS)
+                let input = await prompt('Select Character: ')
+                whichChar = this.getWhichCharToQuickMatch(input)
+                let chars = this.storage.getPlayerCharacters();
+                let selectedChar = chars[whichChar]
+                this.doQuickMatch(selectedChar)
+            }
+        }else{
+            Message.showMessage(Message.getNoCharsHaveBeenCreated())
+        }
     }
 
 }

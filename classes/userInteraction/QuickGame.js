@@ -7,12 +7,12 @@ module.exports = class QuickGame {
 
   static enterQuickGame(character, enemy){
 
-    while(character.health <= 0 || enemy.health <= 0){
+    // while(character.health <= 0 || enemy.health <= 0){
 
-      Message.showMessage(Message.getQuickMatchMessage())
+    //   Message.showMessage(Message.getQuickMatchMessage())
 
 
-    }
+    // }
 
   }
 

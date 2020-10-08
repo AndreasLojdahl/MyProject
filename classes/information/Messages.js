@@ -81,6 +81,20 @@ module.exports = class Messages {
         `
     }
 
+    static getNoCharsHaveBeenCreated(){
+        return `
+        
+        No characters have been created yet!
+        `
+    }
+
+    static getWhichCharQuickMatchMessage(){
+        return `
+        
+        Which character would you like to go to battle with?
+        `
+    }
+
     static showMessage(message){
         console.log(message)
     }
@@ -112,9 +126,12 @@ module.exports = class Messages {
     static getSelectPlayerMessage(characters){
 
         let count = 1;
-        characters.forEach(char => {
-            Messages.showMessage(`${count}. ${char.name}, ${char.race} ${char.class} Lvl. ${char.level}`)
+
+        for(let char of characters){
+            console.log(`${count}. ${char.name}, ${char.race} ${char.class} Lvl. ${char.level}`)
             count++;
-        })
+        }
+        // characters.forEach(char => {
+        // })
     }
 }

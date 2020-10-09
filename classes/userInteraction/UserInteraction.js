@@ -230,7 +230,7 @@ module.exports = class UserInteraction  {
     async selectCharacterForQuickMatch(){
 
         if(this.storage.getPlayerCharacters().length > 0){
-
+            let selectedChar;
             let whichChar = Enums.inputs.wrongInput;
             while(whichChar === Enums.inputs.wrongInput){
                 Message.showMessage(Message.getWhichCharQuickMatchMessage())
@@ -238,10 +238,10 @@ module.exports = class UserInteraction  {
                 let input = await prompt('\n        Select Character: ')
                 whichChar = this.getWhichCharToQuickMatch(input)
                 let chars = this.storage.getPlayerCharacters();
-                let selectedChar = chars[whichChar]
+                selectedChar = chars[whichChar]
                 // console.log(selectedChar)
-                await this.doQuickMatch(selectedChar)
             }
+            await this.doQuickMatch(selectedChar)
         }else{
             Message.showMessage(Message.getNoCharsHaveBeenCreated())
         }

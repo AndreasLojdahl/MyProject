@@ -41,6 +41,19 @@ module.exports = class Messages {
         :`
     }
 
+    static getEnemyHealthMessage(character, enemy, spell, enemyHealth){
+        return `
+        ${character.name} wounds the enemy with ${spell.dmg} dmg! - ${enemy.name} health: ${enemy.health} / ${enemyHealth}
+        `
+
+    }
+    static getPlayerHealthMessage(character, enemy, spell, playerHealth){
+
+        return `
+        ${enemy.name} wounds you with ${spell.dmg} dmg! - Player ${character.name} health: ${character.health} / ${playerHealth}
+        `
+    }
+
      static getWhichNameMessage(){
         return `
         
@@ -118,6 +131,19 @@ module.exports = class Messages {
         
         Your move!
         which spell would yoou like to use?
+        `
+    }
+
+    static getVictoryMessage(){
+        return `
+        Aaaaarrghh! You strike your enemy with a deadly blow!
+        You feel a new born strength dwelling up inside of you,
+        and you gained one level in combat!
+
+        Do you wish to learn a new spell as you have leveled up?
+        1. Yes
+        2. No
+        :
         `
     }
 

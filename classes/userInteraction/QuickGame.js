@@ -14,27 +14,50 @@ module.exports = class QuickGame {
     Message.showMessage(Message.getQuickMatchMessage(character))
     Message.showMessage(Message.getIntroMatchMessage(enemy))
 
-    let charactersTurn = true;
+    let playersTurn = true;
+    let playerStartHealth = character.health
+    let enemyStartHealth = enemy.health
   
-    while(character.health >= 0 || enemy.health >= 0){
+    while(character.health > 0 || enemy.health > 0){
 
-        if(charactersTurn){
-          let userInput = Enums.inputs.wrongInput;
-          while(userInput === Enums.inputs.wrongInput){
+    
+
+        if(playersTurn){
+          let selectedSpell = Enums.inputs.wrongInput;
+          while(selectedSpell === Enums.inputs.wrongInput){
             
             Message.showMessage(Message.getCharacterMoveMessage())
             Message.getShowCharacterSpells(character);
-            let input = await prompt('\n        choose spell:\n ')
-            let selectedSpell = this.getSelectedSpell(input, character);
+
+            let input = await prompt('\n        choose spell: ')
+            selectedSpell = this.getSelectedSpell(input, character);
+            let reducedHealth = enemy.health - selectedSpell.spell.dmg
+            enemy.health = reducedHealth
+
             Message.showMessage(AttackAdapter.attack(character, selectedSpell.index))
-
-
+            Message.showMessage(Message.getEnemyHealthMessage(character, enemy, selectedSpell.spell, enemyStartHealth));
+            playersTurn = false;
           }
+        }else if(!playersTurn){
+            Message.showMessage('\n       The enemy makes a move towards you!')
+            let randomInput = Math.floor(Math.random() * 3) + 1;
+            let selectedSpell = this.getSelectedSpell(randomInput, enemy)
+            let reducedHealth = character.health - selectedSpell.spell.dmg
+            character.health = reducedHealth;
 
-          console.log(input)
+            Message.showMessage(AttackAdapter.attack(enemy, selectedSpell.index));
+            Message.showMessage(Message.getPlayerHealthMessage(character, enemy, selectedSpell.spell, playerStartHealth))
+            playersTurn = true;
+
         }
+    }
 
+    if(character.health > enemy.health){
+      let userInput = Enums.inputs.wrongInput;
+      // while(userInput === Enums.inputs.wrongInput){
+        Message.showMessage(Message.getVictoryMessage())
 
+      // }
     }
 
   }
@@ -54,14 +77,12 @@ module.exports = class QuickGame {
       
       let intInput = parseInt(input)
       let choice = intInput-1
-      // let idx = choice
-      // let spe = character.spells[choice]
 
       let chosenSpell = {
         spell: character.spells[choice],
         index: choice
       }
-        
+
       return (chosenSpell);
 
     }else{

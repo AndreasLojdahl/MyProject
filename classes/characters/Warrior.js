@@ -16,13 +16,19 @@ module.exports = class Warrior extends Character {
     }
 
     mortalStrike(){
-        return `${this.name} swings a ** MORTAL STRIKE ** at its enemy!`
+        return `
+
+        ${this.name} swings a ** MORTAL STRIKE ** at its enemy!`
     }
     bladeStorm(){
-        return `${this.name} swings and spins like a ** BLADESTORM ** at its enemy!`
+        return `
+
+        ${this.name} swings and spins like a ** BLADESTORM ** at its enemy!`
     }
     execute(){
-        return `${this.name} storms its opponent in hope for a ** EXECUTE ** !`
+        return `
+        
+        ${this.name} storms its opponent in hope for a ** EXECUTE ** !`
     }
 
 }

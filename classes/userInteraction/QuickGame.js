@@ -31,13 +31,15 @@ module.exports = class QuickGame {
 
             let input = await prompt('\n        choose spell: ')
             selectedSpell = this.getSelectedSpell(input, character);
+          }
             let reducedHealth = enemy.health - selectedSpell.spell.dmg
             enemy.health = reducedHealth
-
+            if(enemy.health <= 0){
+              break;
+            }
             Message.showMessage(AttackAdapter.attack(character, selectedSpell.index))
             Message.showMessage(Message.getEnemyHealthMessage(character, enemy, selectedSpell.spell, enemyStartHealth));
             playersTurn = false;
-          }
         }else if(!playersTurn){
             Message.showMessage('\n       The enemy makes a move towards you!')
             let randomInput = Math.floor(Math.random() * 3) + 1;

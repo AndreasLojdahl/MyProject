@@ -7,24 +7,24 @@ const Druid = require("../characters/Druid");
 module.exports = class CharacterFactory {
   static spells = {
     WARRIOR: [
-      { name: "Mortal Strike", dmg: 15 },
-      { name: "Bladestorm", dmg: 10 },
-      { name: "Execute", dmg: 20 },
+      { name: "mortalStrike", dmg: 15 },
+      { name: "bladeStorm", dmg: 10 },
+      { name: "execute", dmg: 20 },
     ],
     MAGE: [
-      { name: "Frost Bolt", dmg: 15 },
-      { name: "Arcane Nova", dmg: 10 },
-      { name: "FireBall", dmg: 20 },
+      { name: "frostBolt", dmg: 15 },
+      { name: "arcaneNova", dmg: 10 },
+      { name: "fireBall", dmg: 20 },
     ],
     ASSASSIN: [
-      { name: "Stab", dmg: 15 },
-      { name: "Poison", dmg: 10 },
+      { name: "stab", dmg: 15 },
+      { name: "poison", dmg: 10 },
       { name: "Ambush", dmg: 20 },
     ],
     DRUID: [
-      { name: "Nature Bolt", dmg: 15 },
-      { name: "MoonFire", dmg: 10 },
-      { name: "Heal", dmg: 20 },
+      { name: "natureBolt", dmg: 15 },
+      { name: "moonFire", dmg: 10 },
+      { name: "starFire", dmg: 20 },
     ],
   };
 

@@ -12,4 +12,14 @@ module.exports = class Assassin extends Character {
         this.health = 70;
         this.spells = spells
     }
+
+    stab(){
+        return `${this.name} ** STABS ** its enemy!`
+    }
+    poison(){
+        return `${this.name} ** POISON ** its enemy!`
+    }
+    ambush(){
+        return `${this.name} ** AMBUSH ** its enemy!`
+    }
 }

@@ -5,9 +5,10 @@ const Enums = require('../enums/Enums');
 const Messages = require('../information/Messages');
 const UserInteraction = require('../userInteraction/UserInteraction')
 
+
 module.exports = class GamePlan {
 
-    hasBeenInstantieted = false
+    hasBeenInstantieted = false;
     message = new Messages();
     userInteraction = new UserInteraction();
 
@@ -20,7 +21,7 @@ module.exports = class GamePlan {
   
 
     async mainMenu(){
-      
+
         let mainMenuInput;
       
         console.log(Messages.getGreetingMessage())

@@ -7,7 +7,7 @@ module.exports = class Messages {
     static getWhichRaceMessage(){
         return `
         
-        Which race would you like to play as?
+        Which * RACE * would you like to play as?
         1. Orc 
         2. Undead 
         3. Troll 
@@ -20,7 +20,7 @@ module.exports = class Messages {
     static getWhichClassMessage(){
         return `
         
-        Which class would you like to play as?
+        Which * CLASS * would you like to play as?
         1. Warrior
         2. Mage 
         3. Assassin 
@@ -32,7 +32,7 @@ module.exports = class Messages {
     static getWhichInfoMessage(){
         return `
         
-        Which class would you like information about?
+        Which * CLASS * would you like * INFORMATION * about?
         1. Warrior
         2. Mage 
         3. Assassin 
@@ -72,10 +72,10 @@ module.exports = class Messages {
         :`
     }
 
-    static getQuickMatchMessage(){
+    static getQuickMatchMessage(character){
         return `
         
-        Welcome to quick match!
+        Welcome to quick match ${character.name}!
         you will now battle with an enemy for experience
         to level up your character or die and loose it forever!
         `
@@ -93,6 +93,42 @@ module.exports = class Messages {
         
         Which character would you like to go to battle with?
         `
+    }
+
+    static getQuickGameMessage(char){
+        return `
+        
+        Welcome to Quick Game ${char.name}! you will now commence battle with an enemy!
+        `
+    }
+
+    static getIntroMatchMessage(enemy){
+        return `
+        
+        As you stepped onto the battlefield you felt a cold malevolent air to it,
+        the wind howling past you in every which way. A red mist thrown up from
+        the sheer of blood that has been spilt. As you look towards the horizon 
+        there you see a blood thirsty ${enemy.race} ${enemy.class}
+        `
+    }
+
+    static getCharacterMoveMessage(){
+
+        return `
+        
+        Your move!
+        which spell would yoou like to use?
+        `
+    }
+
+    static getShowCharacterSpells(character){
+    
+        let count = 1;
+       
+        for(let spell of character.spells){
+            console.log(`        ${count}. ${spell.name} - ${spell.dmg} dmg`)
+            count++;
+        }
     }
 
     static showMessage(message){
@@ -128,10 +164,8 @@ module.exports = class Messages {
         let count = 1;
 
         for(let char of characters){
-            console.log(`${count}. ${char.name}, ${char.race} ${char.class} Lvl. ${char.level}`)
+            console.log(`        ${count}. ${char.name}, ${char.race} ${char.class} Lvl. ${char.level}`);
             count++;
         }
-        // characters.forEach(char => {
-        // })
     }
 }

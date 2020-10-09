@@ -137,7 +137,7 @@ module.exports = class UserInteraction  {
 
             this.storage.addPlayerCharacter(createdCharacter)
 
-            Message.showMessage('You have created a character!')
+            Message.showMessage('\n        You have created a character!')
             
     }
 
@@ -158,7 +158,8 @@ module.exports = class UserInteraction  {
         }else if(display === Enums.display.QUICKMATCHCHARS){
 
             if(this.storage.getPlayerCharacters().length > 0){
-                Message.showMessage(Message.getSelectPlayerMessage(this.storage.getPlayerCharacters()))
+                Message.getSelectPlayerMessage(this.storage.getPlayerCharacters())
+                
             }else{
                 Message.showMessage(Message.getNoCharsHaveBeenCreated());
             }
@@ -173,7 +174,6 @@ module.exports = class UserInteraction  {
             let x = parseInt(input)
 
             if(x > this.storage.getPlayerCharacters().length){
-                console.log(input, 'efter andra if')
                 return Enums.inputs.wrongInput;
                 
             }else if(x === 0){
@@ -202,19 +202,29 @@ module.exports = class UserInteraction  {
             name:''
         }
 
-        let randomEnemyClass = Math.floor(Math.random() * Enums.classes.length) + 1;
-        enemyChar.class = randomEnemyClass;
-        let randomEnemyRace = Math.floor(Math.random() * Enums.races.length) + 1;
-        enemyChar.race = randomEnemyRace;
+        // let classLength = Math.floor(Math.random() * Enums.classes.length) + 1
+        let classesLength = Math.floor(Math.random() * 4) + 1;
+        let classesLengthStr = classesLength.toString();
+        enemyChar.class = classesLengthStr;
+        // console.log(classesLength, ' class - ', classesLengthStr, ' classStr - ' , enemyChar.class , ' enemycharClass')
+         
+        // let racesLength = Math.floor(Math.random() * Enums.races.length) + 1;
+        let racesLength = Math.floor(Math.random() * 6) + 1;
+        let racesLengthStr = racesLength.toString();
+        enemyChar.race = this.getWhichRaceSwitch(racesLengthStr)
+        // console.log(racesLength, ' race - ', racesLengthStr, ' strrace - ', enemyChar.race , ' enemycharRace')
+
         enemyChar.name = "Enemy"
         let createdRandomEnemy = CharacterFactory.createCharacter(enemyChar)
+        // console.log(createdRandomEnemy)
         return createdRandomEnemy;
     }
 
-    doQuickMatch(selectedChar){
+    async doQuickMatch(selectedChar){
 
-       let enemy = this.createRandomEnemy();
-        QuickMatch.enterQuickGame(selectedChar, enemy)
+        let enemy = this.createRandomEnemy();
+     
+        await QuickMatch.enterQuickGame(selectedChar, enemy)
     }
 
     async selectCharacterForQuickMatch(){
@@ -225,11 +235,12 @@ module.exports = class UserInteraction  {
             while(whichChar === Enums.inputs.wrongInput){
                 Message.showMessage(Message.getWhichCharQuickMatchMessage())
                 this.displayCharacters(Enums.display.QUICKMATCHCHARS)
-                let input = await prompt('Select Character: ')
+                let input = await prompt('\n        Select Character: ')
                 whichChar = this.getWhichCharToQuickMatch(input)
                 let chars = this.storage.getPlayerCharacters();
                 let selectedChar = chars[whichChar]
-                this.doQuickMatch(selectedChar)
+                // console.log(selectedChar)
+                await this.doQuickMatch(selectedChar)
             }
         }else{
             Message.showMessage(Message.getNoCharsHaveBeenCreated())

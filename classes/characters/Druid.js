@@ -12,4 +12,20 @@ module.exports = class Druid extends Character {
         this.health = 70;
         this.spells = spells
     }
+
+    natureBolt(){
+        return `
+        
+        ${this.name} shoots a ** NATURE BOLT ** at its enemy!`
+    }
+    moonFire(){
+        return `
+        
+        ${this.name} shoots a glowing ** MOONFIRE ** at its enemy!`
+    }
+    heal(){
+        return `
+        
+        ${this.name} shoots a maxed out ** STARFIRE ** at its enemy in full moonkin form Kiyaah!`
+    }
 }

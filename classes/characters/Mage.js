@@ -14,4 +14,14 @@ module.exports = class Mage extends Character {
         this.health = 70;
         this.spells = spells
     }
+
+    frostBolt(){
+        return `${this.name} shoots a chilly ** FROST BOLT ** at its enemy!`
+    }
+    arcaneNova(){
+        return `${this.name} shoots a ** ARCANE NOVA ** at its enemy!`
+    }
+    fireBall(){
+        return `${this.name} shoots a smoldering hot ** FIRE BALL ** at its enemy! !`
+    }
 }

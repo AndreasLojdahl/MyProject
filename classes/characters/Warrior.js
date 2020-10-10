@@ -31,4 +31,8 @@ module.exports = class Warrior extends Character {
         ${this.name} storms its opponent in hope for a ** EXECUTE ** !`
     }
 
+    greet(){
+        console.log(`        ${this.name} says "Good to see you, commander!"`)
+    }
+
 }

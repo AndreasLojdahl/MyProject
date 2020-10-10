@@ -28,4 +28,9 @@ module.exports = class Assassin extends Character {
         
         ${this.name} ** AMBUSH ** its enemy!`
     }
+
+    greet(){
+        console.log(`        ${this.name} says "I will take pleasure in gutting you!"`)
+    }
+
 }

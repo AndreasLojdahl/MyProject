@@ -1,5 +1,7 @@
 const Character = require("./Character");
 
+'use strict';
+
 module.exports = class Druid extends Character {
     health;
     spells;
@@ -27,5 +29,9 @@ module.exports = class Druid extends Character {
         return `
 
         ${this.name} shoots a maxed out ** STARFIRE ** at its enemy in full moonkin form Kiyaah!`
+    }
+
+    greet(){
+        console.log(`        ${this.name} says "Do you feel the change in the wind?`)
     }
 }

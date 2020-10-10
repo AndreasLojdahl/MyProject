@@ -28,6 +28,10 @@ module.exports = class Mage extends Character {
     fireBall(){
         return `
         
-        ${this.name} shoots a smoldering hot ** FIRE BALL ** at its enemy! !`
+        ${this.name} shoots a smoldering hot ** FIRE BALL ** at its enemy!`
+    }
+
+    greet(){
+        console.log(`        ${this.name} says "The universe is full of mystery"`)
     }
 }

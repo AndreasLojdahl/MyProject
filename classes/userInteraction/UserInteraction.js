@@ -128,6 +128,7 @@ module.exports = class UserInteraction {
     this.storage.addPlayerCharacter(createdCharacter);
 
     Message.showMessage("\n        You have created a character!");
+    createdCharacter.makeSpecialGreeting();
   }
 
   displayCharacters(display) {
@@ -184,7 +185,6 @@ module.exports = class UserInteraction {
 
     enemyChar.name = "Enemy";
     let createdRandomEnemy = CharacterFactory.createCharacter(enemyChar);
-    // console.log(createdRandomEnemy)
     return createdRandomEnemy;
   }
 
@@ -193,7 +193,7 @@ module.exports = class UserInteraction {
 
     let deleteCharacter = await QuickMatch.enterQuickGame(selectedChar, enemy);
     if (deleteCharacter) {
-      this.storage.deletePlayerCharacter(char.name);
+      this.storage.deletePlayerCharacter(deleteCharacter.name);
     }
   }
 

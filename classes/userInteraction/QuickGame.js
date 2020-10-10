@@ -1,9 +1,7 @@
 const Message = require("../information/Messages");
 const prompt = require("async-prompt");
-const Character = require("../characters/Character");
 const Enums = require("../enums/Enums");
 const AttackAdapter = require("../userInteraction/AttackAdapter");
-const Storage = require("../data/Storage");
 const SpellDecorator = require("../SpellDecorator");
 module.exports = class QuickGame {
 

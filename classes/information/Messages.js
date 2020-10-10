@@ -171,6 +171,7 @@ module.exports = class Messages {
       let spells = char.spells.map((x) => x.name);
 
       let spellsDisplay = spells.join(", ");
+      
       console.log(`
         CHARACTER ${count}
 

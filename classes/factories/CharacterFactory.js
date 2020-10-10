@@ -30,9 +30,7 @@ module.exports = class CharacterFactory {
 
   constructor() {}
 
-  // shall get a character obj {name: '', race: '', class: ''}
   static createCharacter(character) {
- 
     if (Object.values(Enums.classes).includes(character.class)) {
       switch (character.class) {
         case Enums.classes.WARRIOR: {
@@ -44,7 +42,6 @@ module.exports = class CharacterFactory {
           return newChar;
         }
         case Enums.classes.MAGE: {
-
           let newChar = new Mage(
             character.name,
             character.race,

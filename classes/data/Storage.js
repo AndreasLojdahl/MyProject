@@ -1,29 +1,27 @@
 const Character = require("../characters/Character");
 
-
 module.exports = class Storage {
-    
-    StorageHasBeenInstantieted = false;
+  storageHasBeenInstantieted = false;
 
-    playerCharacters = [];
-    
-    constructor(){
-        if(Storage.StorageHasBeenInstantieted){
-            throw new Error('You can only create one instance of Storage!')
-        }
-        Storage.StorageHasBeenInstantieted = true;
-    }
+  playerCharacters = [];
 
-    getPlayerCharacters = () => {
-        return this.playerCharacters;
+  constructor() {
+    if (Storage.storageHasBeenInstantieted) {
+      throw new Error("You can only create one instance of Storage!");
     }
+    Storage.StorageHasBeenInstantieted = true;
+  }
 
-    deletePlayerCharacter = (name) => {
-        let newList = playerCharacters.filter(char => char.name !== name )
-        this.playerCharacters = newList;
-    }
+  getPlayerCharacters = () => {
+    return this.playerCharacters;
+  };
 
-    addPlayerCharacter = (character) => {
-        this.playerCharacters.push(character)
-    }
-}
+  deletePlayerCharacter = (name) => {
+    let newList = this.playerCharacters.filter((char) => char.name !== name);
+    this.playerCharacters = newList;
+  };
+
+  addPlayerCharacter = (character) => {
+    this.playerCharacters.push(character);
+  };
+};

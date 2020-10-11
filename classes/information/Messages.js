@@ -147,7 +147,6 @@ module.exports = class Messages {
     return `
         ** COUGH ** you draw your last breath and before
         you shut your eyes forever you see a sight of defeat!
-        a
         `;
   }
 

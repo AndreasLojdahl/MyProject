@@ -33,7 +33,7 @@ module.exports = class CharacterInformation {
     static getDruidInfo(){
         let info = `
         
-        5Druids live in a state of unparalleled union with nature.
+        Druids live in a state of unparalleled union with nature.
         Thightly bound to the plant and animal kingdoms, they are natural shapeshifters,
         and so the know firsthand the abuse visited on thier wild brethrend`
         return info;

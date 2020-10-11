@@ -1,5 +1,3 @@
-const Character = require("../characters/Character");
-
 module.exports = class Storage {
   storageHasBeenInstantieted = false;
 

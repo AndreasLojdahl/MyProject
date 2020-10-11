@@ -1,6 +1,4 @@
 const prompt = require('async-prompt');
-const promptly = require('promptly')
-const readline = require('readline');
 const Enums = require('../enums/Enums');
 const Messages = require('../information/Messages');
 const UserInteraction = require('../userInteraction/UserInteraction')
@@ -9,7 +7,6 @@ const UserInteraction = require('../userInteraction/UserInteraction')
 module.exports = class GamePlan {
 
     hasBeenInstantieted = false;
-    message = new Messages();
     userInteraction = new UserInteraction();
     
     // singleton pattern

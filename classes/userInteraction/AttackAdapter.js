@@ -7,6 +7,7 @@ module.exports = class AttackAdapter {
         Druid: ['natureBolt','moonFire','starFire','blizzard'],
     }
 
+    //adapter pattern
     static attack(object, attack){
         let className = object.constructor.name;
         try{

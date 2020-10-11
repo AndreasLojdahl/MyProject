@@ -77,6 +77,8 @@ module.exports = class UserInteraction {
     }
     return "error";
   }
+
+  //facade pattern
   async getMainMenuSwitch(userChoice) {
     if (Object.values(Enums.mainMenu).includes(userChoice)) {
       switch (userChoice) {
@@ -131,6 +133,7 @@ module.exports = class UserInteraction {
     createdCharacter.makeSpecialGreeting();
   }
 
+  // depending on which option the user has chose it displays the characters in different design styles in the console
   displayCharacters(display) {
     if (display === Enums.display.CHARS) {
       if (this.storage.getPlayerCharacters().length > 0) {
@@ -208,7 +211,6 @@ module.exports = class UserInteraction {
         whichChar = this.getWhichCharToQuickMatch(input);
         let chars = this.storage.getPlayerCharacters();
         selectedChar = chars[whichChar];
-        // console.log(selectedChar)
       }
       await this.doQuickMatch(selectedChar);
     } else {

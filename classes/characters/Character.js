@@ -7,7 +7,8 @@ module.exports = class Character {
         this.name = name;
         this.race = race;
     }
-
+    
+    // template pattern
     makeSpecialGreeting(){
         this.greet()
     }

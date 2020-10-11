@@ -11,7 +11,8 @@ module.exports = class GamePlan {
     hasBeenInstantieted = false;
     message = new Messages();
     userInteraction = new UserInteraction();
-
+    
+    // singleton pattern
     constructor(){
       if(GamePlan.hasBeenInstantieted){
         throw new Error('You can only create one instance of Gameplan!')

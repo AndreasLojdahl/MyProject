@@ -29,7 +29,7 @@ module.exports = class CharacterFactory {
   };
 
   constructor() {}
-
+  // factory pattern
   static createCharacter(character) {
     if (Object.values(Enums.classes).includes(character.class)) {
       switch (character.class) {

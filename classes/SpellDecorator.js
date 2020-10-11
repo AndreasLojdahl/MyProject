@@ -2,7 +2,8 @@ module.exports = class SpellDecorator {
   constructor() {
     throw new Error("we don't wanna instansiate this class");
   }
-
+  
+  // decorator pattern
   static learnNewSpell(char) {
     if (!char.name) {
       throw new Error("You need to exist if you want to leaarn a new spell");

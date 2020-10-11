@@ -1,44 +1,45 @@
 let enums = {
+  classes: {
+    WARRIOR: "1",
+    MAGE: "2",
+    ASSASSIN: "3",
+    DRUID: "4",
+  },
+  races: {
+    ORC: "1",
+    UNDEAD: "2",
+    TROLL: "3",
+    GNOME: "4",
+    ELF: "5",
+    HUMAN: "6",
+  },
 
-    classes: {
-        WARRIOR: '1',
-        MAGE: '2',
-        ASSASSIN: '3',
-        DRUID: '4'
-    },
-    races: {
-        ORC: '1',
-        UNDEAD: '2',
-        TROLL: '3',
-        GNOME: '4',
-        ELF: '5',
-        HUMAN: '6'
-    },
-    
-    stringRaces: {
-        ORC: 'Orc',
-        UNDEAD: 'Undead',
-        TROLL: 'Troll',
-        GNOME: 'Gnome',
-        ELF: 'Elf',
-        HUMAN: 'Human'
-    },
-    
-    mainMenu: {
-        CREATE: '1',
-        DISPLAY: '2',
-        GAME: '3',
-        QUIT: '4'
-    },
+  stringRaces: {
+    ORC: "Orc",
+    UNDEAD: "Undead",
+    TROLL: "Troll",
+    GNOME: "Gnome",
+    ELF: "Elf",
+    HUMAN: "Human",
+  },
 
-    inputs: {
-        wrongInput: 'error',
-        moreCharInfo: '5',
-        goBack: 'return'
-    }
+  mainMenu: {
+    CREATE: "1",
+    DISPLAY: "2",
+    GAME: "3",
+    QUIT: "4",
+  },
 
+  inputs: {
+    wrongInput: "error",
+    moreCharInfo: "5",
+    goBack: "return",
+  },
 
+  display: {
+    CHARS: "chars",
+    QUICKMATCHCHARS: "quickChars",
+  },
+};
 
-}
-
-module.exports = enums
+module.exports = enums;

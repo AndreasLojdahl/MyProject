@@ -1,67 +1,72 @@
-const Enums = require('../enums/Enums')
-const Assassin = require('../characters/Assassin')
-const Warrior = require('../characters/Warrior')
-const Mage = require('../characters/Mage')
-const Druid = require('../characters/Druid')
-
-let spells = {
-    WARRIOR: [
-        {name: 'Mortal Strike', dmg: 15},
-        {name: 'Bladestorm', dmg: 10},
-        {name: 'Execute', dmg: 20}
-    ],
-    MAGE: [
-        {name: 'Frost Bolt', dmg: 15},
-        {name: 'Arcane Nova', dmg: 10},
-        {name: 'FireBall', dmg: 20}
-    ],
-    ASSASSIN: [
-        {name: 'Stab', dmg: 15},
-        {name: 'Poison', dmg: 10},
-        {name: 'Ambush', dmg: 20}
-    ],
-    DRUID: [
-        {name: 'Nature Bolt', dmg: 15},
-        {name: 'MoonFire', dmg: 10},
-        {name: 'Heal', dmg: 20}
-    ],
-};
+const Enums = require("../enums/Enums");
+const Assassin = require("../characters/Assassin");
+const Warrior = require("../characters/Warrior");
+const Mage = require("../characters/Mage");
+const Druid = require("../characters/Druid");
 
 module.exports = class CharacterFactory {
-     
-    
-  
+  static spells = {
+    WARRIOR: [
+      { name: "mortalStrike", dmg: 15 },
+      { name: "bladeStorm", dmg: 10 },
+      { name: "execute", dmg: 20 },
+    ],
+    MAGE: [
+      { name: "frostBolt", dmg: 15 },
+      { name: "arcaneNova", dmg: 10 },
+      { name: "fireBall", dmg: 20 },
+    ],
+    ASSASSIN: [
+      { name: "stab", dmg: 15 },
+      { name: "poison", dmg: 10 },
+      { name: "Ambush", dmg: 20 },
+    ],
+    DRUID: [
+      { name: "natureBolt", dmg: 15 },
+      { name: "moonFire", dmg: 10 },
+      { name: "starFire", dmg: 20 },
+    ],
+  };
 
-    constructor(){
-
-        
-    }
-
-    // shall get a character obj {name: '', race: '', class: ''}
-    static createCharacter(character){
-
-        if(Object.values(Enums.classes).includes(character.class)){
-            switch(character.class){
-                case Enums.classes.WARRIOR:{
-                    let newChar = new Warrior(character.name, character.race, spells.WARRIOR)
-                    return newChar;
-                }
-                case Enums.classes.Mage:{
-                    let newChar = new Mage(character.name, character.race, spells.MAGE )
-                    return newChar;
-                }
-                case Enums.classes.ASSASSIN:{
-                    let newChar = new Assassin(character.name, character.race, spells.ASSASSIN )
-                    return newChar;
-                }
-                case Enums.classes.DRUID:{
-                    let newChar = new Druid(character.name, character.race, spells.DRUID)
-                    return newChar;
-                }
-            }
+  constructor() {}
+  // factory pattern
+  static createCharacter(character) {
+    if (Object.values(Enums.classes).includes(character.class)) {
+      switch (character.class) {
+        case Enums.classes.WARRIOR: {
+          let newChar = new Warrior(
+            character.name,
+            character.race,
+            this.spells.WARRIOR
+          );
+          return newChar;
         }
-        return 'error'
-
+        case Enums.classes.MAGE: {
+          let newChar = new Mage(
+            character.name,
+            character.race,
+            this.spells.MAGE
+          );
+          return newChar;
+        }
+        case Enums.classes.ASSASSIN: {
+          let newChar = new Assassin(
+            character.name,
+            character.race,
+            this.spells.ASSASSIN
+          );
+          return newChar;
+        }
+        case Enums.classes.DRUID: {
+          let newChar = new Druid(
+            character.name,
+            character.race,
+            this.spells.DRUID
+          );
+          return newChar;
+        }
+      }
     }
-
-} 
+    return "error";
+  }
+};

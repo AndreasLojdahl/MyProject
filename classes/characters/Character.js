@@ -7,4 +7,13 @@ module.exports = class Character {
         this.name = name;
         this.race = race;
     }
+    
+    // template pattern
+    makeSpecialGreeting(){
+        this.greet()
+    }
+
+    greet(){
+        throw new Error('You have to make your own greet!')
+    }
 }
